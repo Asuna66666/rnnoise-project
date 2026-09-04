@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+
+rnnoise/
+
+audio/temp/
+audio/live_demo/
+
+results/
+test_audio/
+
+.env

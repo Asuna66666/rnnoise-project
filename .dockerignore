@@ -1,0 +1,7 @@
+.venv
+__pycache__
+*.pyc
+.git
+results
+audio/temp
+audio/live_demo
