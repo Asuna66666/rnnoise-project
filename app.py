@@ -304,16 +304,46 @@ noise_mode = st.segmented_control(
 
 
 if noise_mode == "White noise":
-    noise_snr = st.slider(
+    noise_snr = st.segmented_control(
         "White noise SNR",
-        min_value=0,
-        max_value=20,
-        value=10,
-        step=5,
-        format="%d dB",
+        options=[0, 5, 10, 15, 20],
+        default=10,
+        format_func=lambda x: f"{x} dB",
     )
 else:
     noise_snr = None
+
+
+# SNR тайлбар
+if noise_mode == "White noise":
+    if noise_snr == 0:
+        st.caption(
+            "0 dB: Яриа болон noise ойролцоо хүчтэй. "
+            "Хамгийн хүнд туршилтын нөхцөл."
+        )
+
+    elif noise_snr == 5:
+        st.caption(
+            "5 dB: Noise хүчтэй хэвээр боловч яриа арай тод."
+        )
+
+    elif noise_snr == 10:
+        st.caption(
+            "10 dB: Noise suppression болон natural speech-ийн "
+            "хооронд сайн balance."
+        )
+
+    elif noise_snr == 15:
+        st.caption(
+            "15 dB: Input харьцангуй цэвэр."
+        )
+
+    elif noise_snr == 20:
+        st.caption(
+            "20 dB: Input аль хэдийн маш цэвэр тул "
+            "RNNoise-ийн нэмэлт ашиг бага."
+        )
+
 
 
 # ------------------------------------------------------------
